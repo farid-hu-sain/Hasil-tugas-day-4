@@ -1,0 +1,113 @@
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback
+$ git init
+Initialized empty Git repository in D:/Latihan Branching dan rollback/.git/
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (master)
+$ git add .
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (master)
+$ git commit -m "cabang 1"
+[master (root-commit) cf2c4ef] cabang 1
+ 1 file changed, 13 insertions(+)
+ create mode 100644 branching.html
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (master)
+$ git branch cabang 1
+fatal: not a valid object name: '1'
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (master)
+$ git branch cabang_1
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (master)
+$ git branch
+  cabang_1
+* master
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (master)
+$ git switch -c Cabang_2
+Switched to a new branch 'Cabang_2'
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_2)
+$
+ *  History restored 
+
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_2)
+$ git add .
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_2)
+$ git commit -m "cabang_2"
+[Cabang_2 22b6512] cabang_2
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_2)
+$ git switch cabang_1
+Switched to branch 'cabang_1'
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (cabang_1)
+$ git switch -c Cabang_1a
+Switched to a new branch 'Cabang_1a'
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a)
+$ git add .
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a)
+$ git commit -m "cabang_1a"
+[Cabang_1a d1e5ce9] cabang_1a
+ 1 file changed, 2 insertions(+)
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a)
+$ git branch
+* Cabang_1a
+  Cabang_2
+  cabang_1
+  master
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a)
+$ git merge cabang_2
+Auto-merging branching.html
+CONFLICT (content): Merge conflict in branching.html
+Automatic merge failed; fix conflicts and then commit the result.
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a|MERGING)
+$ git switch cabang_2
+fatal: cannot switch branch while merging
+Consider "git merge --quit" or "git worktree add".
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a|MERGING)
+$ git revert commmit cabang_1a
+fatal: bad revision 'commmit'
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a|MERGING)
+$ git revert cabang_1a
+error: Reverting is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: revert failed
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a|MERGING)
+$ git add .gitignore
+fatal: pathspec '.gitignore' did not match any files
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a|MERGING)
+$ git add .
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a|MERGING)
+$ git commit -m "Hasil Akhir"
+On branch Cabang_1a
+nothing to commit, working tree clean
+
+Helios@LAPTOP-V0PM5JLH MINGW64 /d/Latihan Branching dan rollback (Cabang_1a)
+$ git branch -M main
+git remote add origin https://github.com/farid-hu-sain/Hasil-tugas-day-4.git
+git push -u origin main
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (12/12), 1.18 KiB | 605.00 KiB/s, done.
+Total 12 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), done.
+To https://github.com/farid-hu-sain/Hasil-tugas-day-4.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
